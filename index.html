@@ -743,6 +743,8 @@
     }
 
     .offer-product > .kit-label {
+      display: grid;
+      gap: 0.42rem;
       justify-self: center;
       padding: 0.72rem 1.2rem;
       border-radius: 999px;
@@ -757,6 +759,101 @@
       letter-spacing: 0.08em;
       line-height: 1.1;
       text-align: center;
+    }
+
+    .offer-label__text,
+    .offer-label__timer-note {
+      display: block;
+    }
+
+    .offer-label__timer-note {
+      font-size: clamp(0.68rem, 1.8vw, 0.82rem);
+      letter-spacing: 0.12em;
+      color: #064421;
+    }
+
+    .offer-hourglass {
+      position: relative;
+      display: block;
+      width: 34px;
+      height: 46px;
+      margin: 0 auto;
+      border-top: 4px solid #052012;
+      border-bottom: 4px solid #052012;
+      filter: drop-shadow(0 8px 14px rgba(5, 32, 18, 0.22));
+    }
+
+    .offer-hourglass::before,
+    .offer-hourglass::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 24px;
+      height: 20px;
+      border: 3px solid #052012;
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateX(-50%);
+    }
+
+    .offer-hourglass::before {
+      top: 3px;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    .offer-hourglass::after {
+      bottom: 3px;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+
+    .offer-hourglass__sand-top,
+    .offer-hourglass__sand-bottom,
+    .offer-hourglass__stream {
+      position: absolute;
+      left: 50%;
+      z-index: 2;
+      transform: translateX(-50%);
+      background: #d9a521;
+    }
+
+    .offer-hourglass__sand-top {
+      top: 7px;
+      width: 16px;
+      height: 12px;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      animation: sandTop 2.6s linear infinite;
+    }
+
+    .offer-hourglass__stream {
+      top: 19px;
+      width: 3px;
+      height: 16px;
+      border-radius: 999px;
+      animation: sandStream 0.7s linear infinite;
+    }
+
+    .offer-hourglass__sand-bottom {
+      bottom: 7px;
+      width: 16px;
+      height: 12px;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      animation: sandBottom 2.6s linear infinite;
+    }
+
+    @keyframes sandTop {
+      0% { height: 13px; opacity: 1; }
+      82% { height: 3px; opacity: 0.9; }
+      100% { height: 13px; opacity: 1; }
+    }
+
+    @keyframes sandBottom {
+      0% { height: 3px; opacity: 0.85; }
+      82% { height: 13px; opacity: 1; }
+      100% { height: 3px; opacity: 0.85; }
+    }
+
+    @keyframes sandStream {
+      0%, 100% { opacity: 0.25; transform: translateX(-50%) scaleY(0.45); }
+      45% { opacity: 1; transform: translateX(-50%) scaleY(1); }
     }
 
     .offer-stack {
@@ -2174,7 +2271,15 @@
         <div class="offer-stack">
           <div class="offer-details-card">
             <div class="offer-product">
-              <span class="kit-label kit-label-alt">OFERTA ESPECIAL POR TEMPO LIMITADO</span>
+              <span class="kit-label kit-label-alt">
+                <span class="offer-label__text">OFERTA ESPECIAL POR TEMPO LIMITADO</span>
+                <span class="offer-hourglass" aria-hidden="true">
+                  <span class="offer-hourglass__sand-top"></span>
+                  <span class="offer-hourglass__stream"></span>
+                  <span class="offer-hourglass__sand-bottom"></span>
+                </span>
+                <span class="offer-label__timer-note">TEMPO QUASE ACABANDO</span>
+              </span>
               <h2 class="offer-product__title">Receituário Anti-inflamatório +800 Receitas</h2>
               <div class="offer-product__reviews" aria-label="Avaliação de clientes">
                 <span class="offer-product__stars" aria-hidden="true">★★★★★</span>
