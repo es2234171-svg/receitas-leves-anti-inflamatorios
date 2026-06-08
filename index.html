@@ -22,13 +22,9 @@
   <noscript><link rel="stylesheet" href="assets/css/animations.css"></noscript>
   <link rel="preload" as="style" href="assets/css/effects.css" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="assets/css/effects.css"></noscript>
-  <link rel="preload" as="image" href="assets/images/receitas-jantares-antiinflamatorios-card.jpg?v=20260604-2">
-  <link rel="preload" as="image" href="assets/images/receitas-refeicoes-rapidas-card.jpg?v=20260604-2">
-  <link rel="preload" as="image" href="assets/images/receitas-desayunos-meriendas-card.jpg?v=20260604-2">
-  <link rel="preload" as="image" href="assets/images/receitas-smoothies-detox-card.jpg?v=20260604-2">
-  <link rel="preload" as="image" href="assets/images/receitas-veganas-card.jpg?v=20260604-2">
-  <link rel="preload" as="image" href="assets/images/receitas-snacks-saudaveis-card.jpg?v=20260604-2">
-  <link rel="preload" as="image" href="assets/images/receitas-extras-sprite-card.jpg?v=20260604-1">
+  <link rel="preload" as="image" href="assets/images/hero-dor-mulher-impacto.jpg?v=20260607-1">
+  <link rel="preload" as="image" href="assets/images/solucao-mulher-cozinha-saudavel.jpg?v=20260607-1">
+  <link rel="preload" as="image" href="assets/images/receitas-alimentos-sprite-premium-v2.jpg?v=20260608-1">
 
   <style>
     [data-anim] { opacity: 0; }
@@ -220,6 +216,11 @@
       object-fit: cover;
     }
 
+    .hero-visual__impact {
+      display: block;
+      object-position: center 38%;
+    }
+
     .hero-visual::after {
       content: "";
       position: absolute;
@@ -242,6 +243,18 @@
       backdrop-filter: blur(12px);
       color: #fff;
       font-weight: 800;
+    }
+
+    .hero-visual__question {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #b7ff62;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      text-shadow: 0 0 20px rgba(183, 255, 98, 0.42);
     }
 
     .kit-btn-shiny {
@@ -304,6 +317,23 @@
 
     .solution-card {
       border-top: 3px solid #38ef7d;
+    }
+
+    .solution-visual {
+      margin: 0.35rem 0 0.4rem;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(183, 255, 98, 0.2);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), 0 0 46px rgba(56, 239, 125, 0.16);
+      background: #062012;
+    }
+
+    .solution-visual img {
+      display: block;
+      width: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      object-position: center;
     }
 
     .sts-section {
@@ -547,18 +577,24 @@
       width: 100%;
       height: 100%;
       display: block;
-      background-image: url("assets/images/receitas-extras-sprite-card.jpg?v=20260604-1");
-      background-size: 300% 200%;
+      background-image: url("assets/images/receitas-alimentos-sprite-premium-v2.jpg?v=20260608-1");
+      background-size: 400% 300%;
       background-repeat: no-repeat;
       transform: scale(1.01);
       transition: transform 0.5s ease, filter 0.5s ease;
     }
 
-    .benefit-image-sprite--navidad { background-position: 0% 0%; }
-    .benefit-image-sprite--kids { background-position: 50% 0%; }
-    .benefit-image-sprite--airfryer { background-position: 100% 0%; }
-    .benefit-image-sprite--invierno { background-position: 0% 100%; }
-    .benefit-image-sprite--postres { background-position: 50% 100%; }
+    .benefit-image-sprite--jantares { background-position: 0% 0%; }
+    .benefit-image-sprite--rapidas { background-position: 33.333% 0%; }
+    .benefit-image-sprite--cafes { background-position: 66.666% 0%; }
+    .benefit-image-sprite--vitaminas { background-position: 100% 0%; }
+    .benefit-image-sprite--veganas { background-position: 0% 50%; }
+    .benefit-image-sprite--snacks { background-position: 33.333% 50%; }
+    .benefit-image-sprite--navidad { background-position: 66.666% 50%; }
+    .benefit-image-sprite--kids { background-position: 100% 50%; }
+    .benefit-image-sprite--airfryer { background-position: 0% 100%; }
+    .benefit-image-sprite--invierno { background-position: 33.333% 100%; }
+    .benefit-image-sprite--postres { background-position: 66.666% 100%; }
     .benefit-image-sprite--vegetarianas { background-position: 100% 100%; }
 
     #entregaveis .kit-benefits__card:hover .benefit-image-sprite {
@@ -1738,6 +1774,12 @@
         border-radius: 8px;
       }
 
+      .hero-visual__impact {
+        min-height: 560px !important;
+        max-height: none;
+        object-position: center 36%;
+      }
+
       .hero-visual::after {
         display: none;
       }
@@ -1890,9 +1932,12 @@
           </div>
         </div>
 
-        <figure class="hero-visual" data-anim="fade-left" data-anim-delay="0.25">
-          <img src="assets/images/antiinflammatory-recipes-hero.png" alt="Receitas anti-inflamatórias com ingredientes frescos" width="1536" height="1024" fetchpriority="high">
-          <figcaption class="hero-visual__stamp">+900 receitas práticas sem glúten, sem açúcar e com baixo teor de carboidratos para desinchar, comer bem e recuperar energia</figcaption>
+        <figure class="hero-visual hero-visual--impact" data-anim="fade-left" data-anim-delay="0.25">
+          <img class="hero-visual__impact" src="assets/images/hero-dor-mulher-impacto.jpg?v=20260607-1" alt="Mulher cansada com desconforto abdominal olhando para o corpo no espelho" width="1040" height="1300" fetchpriority="high">
+          <figcaption class="hero-visual__stamp">
+            <span class="hero-visual__question">Você se reconhece nessa cena?</span>
+            O inchaço, a roupa apertando e a falta de energia não precisam continuar fazendo parte da sua rotina.
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -1934,10 +1979,13 @@
       <div class="solution-card section-copy kit-body-lg" data-anim="fade-up">
         <span class="kit-label kit-label-alt">a virada começa no prato</span>
         <h2 class="kit-h1 solution-title-highlight" style="margin: 0;">Receitas Anti-inflamatórias</h2>
-        <p><strong>Um receituário completo para quem quer desinchar, recuperar energia e comer melhor sem transformar a rotina em uma obrigação pesada.</strong></p>
-        <p>Foi pensado para quem tem pouco tempo, chega cansado, não quer passar horas na cozinha e precisa de escolhas simples para reduzir a inflamação silenciosa, aliviar o peso no corpo e ter mais disposição ao longo do dia.</p>
-        <p>Para voltar a se sentir confortável no próprio corpo, colocar aquela roupa que você gosta sem o inchaço atrapalhando, olhar no espelho com mais leveza e viver o dia com mais confiança, foco e energia.</p>
-        <p>São +900 receitas com comida de verdade, saborosas e práticas, muitas prontas em 15 a 20 minutos, com ingredientes de supermercado, fotos passo a passo e combinações que ajudam você a ter dias mais produtivos e uma vida mais saudável.</p>
+        <figure class="solution-visual">
+          <img src="assets/images/solucao-mulher-cozinha-saudavel.jpg?v=20260607-1" alt="Mulher feliz preparando alimentos saudáveis na cozinha" width="1200" height="1800" loading="eager" decoding="async">
+        </figure>
+        <p><strong>Este é o caminho para quem quer parar de improvisar e começar a comer de um jeito que ajuda o corpo a se sentir mais leve, disposto e em equilíbrio.</strong></p>
+        <p>Foi criado para quem vive na correria, chega sem energia, sente o corpo pesado e precisa de receitas simples, gostosas e possíveis de seguir sem passar horas na cozinha.</p>
+        <p>Imagine vestir aquela roupa que você gosta sem o inchaço incomodando, preparar pratos bonitos sem culpa e terminar o dia com a sensação de que você finalmente está cuidando de si.</p>
+        <p>São +900 receitas anti-inflamatórias, sem glúten, sem açúcar e com baixo teor de carboidratos, com ingredientes de supermercado, passo a passo e opções prontas em 15 a 20 minutos.</p>
       </div>
     </div>
   </section>
@@ -1959,7 +2007,7 @@
           <h3 class="kit-benefits__title kit-h4">Jantares Anti-inflamatórios</h3>
           <p class="kit-benefits__desc kit-body-sm">Jantares leves, simples e fáceis de digerir para fechar o dia sem peso.</p>
           <figure class="benefit-image" aria-label="Imagem ilustrativa de jantares anti-inflamatórios">
-            <img src="assets/images/receitas-jantares-antiinflamatorios-card.jpg?v=20260604-2" width="900" height="600" alt="Prato de jantar anti-inflamatório com vegetais, ervas e ingredientes frescos" loading="eager" decoding="async" fetchpriority="high">
+            <span class="benefit-image-sprite benefit-image-sprite--jantares" role="img" aria-label="Jantar anti-inflamatório com peixe, abacate e vegetais coloridos"></span>
           </figure>
         </div>
         <div class="kit-benefits__card kit-card kit-hover-lift" data-anim="fade-up" data-anim-delay="0.1">
@@ -1968,7 +2016,7 @@
           <h3 class="kit-benefits__title kit-h4">Refeições Nutritivas Rápidas</h3>
           <p class="kit-benefits__desc kit-body-sm">Comidas nutritivas que sustentam e você consegue preparar em poucos minutos.</p>
           <figure class="benefit-image" aria-label="Imagem ilustrativa de refeições nutritivas rápidas">
-            <img src="assets/images/receitas-refeicoes-rapidas-card.jpg?v=20260604-2" width="900" height="600" alt="Bowl de refeição nutritiva rápida com legumes, folhas e ingredientes naturais" loading="eager" decoding="async" fetchpriority="high">
+            <span class="benefit-image-sprite benefit-image-sprite--rapidas" role="img" aria-label="Refeição nutritiva rápida com salada, frango grelhado e abacate"></span>
           </figure>
         </div>
         <div class="kit-benefits__card kit-card kit-hover-lift" data-anim="fade-up" data-anim-delay="0.15">
@@ -1977,7 +2025,7 @@
           <h3 class="kit-benefits__title kit-h4">Cafés da Manhã e Lanches Energéticos</h3>
           <p class="kit-benefits__desc kit-body-sm">Cafés da manhã e lanches para manter energia e saciedade ao longo do dia.</p>
           <figure class="benefit-image" aria-label="Imagem ilustrativa de cafés da manhã e lanches energéticos">
-            <img src="assets/images/receitas-desayunos-meriendas-card.jpg?v=20260604-2" width="900" height="600" alt="Café da manhã e lanche energético com frutas, sementes e ingredientes leves" loading="eager" decoding="async" fetchpriority="high">
+            <span class="benefit-image-sprite benefit-image-sprite--cafes" role="img" aria-label="Café da manhã energético com frutas, sementes e castanhas"></span>
           </figure>
         </div>
         <div class="kit-benefits__card kit-card kit-hover-lift" data-anim="fade-up" data-anim-delay="0.2">
@@ -1986,7 +2034,7 @@
           <h3 class="kit-benefits__title kit-h4">Vitaminas Detox</h3>
           <p class="kit-benefits__desc kit-body-sm">Bebidas frescas para ajudar você a se sentir mais leve, hidratado e saudável.</p>
           <figure class="benefit-image" aria-label="Imagem ilustrativa de vitaminas detox">
-            <img src="assets/images/receitas-smoothies-detox-card.jpg?v=20260604-2" width="900" height="600" alt="Vitaminas verdes detox com limão, hortelã e ingredientes frescos" loading="eager" decoding="async" fetchpriority="high">
+            <span class="benefit-image-sprite benefit-image-sprite--vitaminas" role="img" aria-label="Vitaminas detox coloridas com frutas vermelhas e hortelã"></span>
           </figure>
         </div>
         <div class="kit-benefits__card kit-card kit-hover-lift" data-anim="fade-up" data-anim-delay="0.25">
@@ -1995,7 +2043,7 @@
           <h3 class="kit-benefits__title kit-h4">Receitas Veganas</h3>
           <p class="kit-benefits__desc kit-body-sm">Opções vegetais para variar o prato sem depender de carne ou peixe.</p>
           <figure class="benefit-image" aria-label="Imagem ilustrativa de receitas veganas">
-            <img src="assets/images/receitas-veganas-card.jpg?v=20260604-2" width="900" height="600" alt="Refeição vegana colorida com vegetais, grãos e molho natural" loading="eager" decoding="async" fetchpriority="high">
+            <span class="benefit-image-sprite benefit-image-sprite--veganas" role="img" aria-label="Refeição vegana colorida com grãos, vegetais e molho natural"></span>
           </figure>
         </div>
         <div class="kit-benefits__card kit-card kit-hover-lift" data-anim="fade-up" data-anim-delay="0.3">
@@ -2004,7 +2052,7 @@
           <h3 class="kit-benefits__title kit-h4">Lanches Saudáveis Sem Culpa</h3>
           <p class="kit-benefits__desc kit-body-sm">Lanches para beliscar entre refeições sem sair do plano e sem culpa.</p>
           <figure class="benefit-image" aria-label="Imagem ilustrativa de lanches saudáveis">
-            <img src="assets/images/receitas-snacks-saudaveis-card.jpg?v=20260604-2" width="900" height="600" alt="Lanches saudáveis com crackers, frutas, castanhas e pastas naturais" loading="eager" decoding="async" fetchpriority="high">
+            <span class="benefit-image-sprite benefit-image-sprite--snacks" role="img" aria-label="Lanches saudáveis com castanhas, frutas e sementes"></span>
           </figure>
         </div>
         <div class="kit-benefits__card kit-card kit-hover-lift" data-anim="fade-up" data-anim-delay="0.35">
