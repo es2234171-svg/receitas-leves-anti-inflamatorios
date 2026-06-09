@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="no-effects">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
   <link rel="preload" as="image" href="assets/images/receitas-alimentos-sprite-premium-v2.jpg?v=20260608-1">
 
   <style>
-    [data-anim] { opacity: 0; }
+    [data-anim] { opacity: 1; }
 
     :root {
       --kit-primary: #24d166;
@@ -407,6 +407,34 @@
       transition-duration: 0.65s;
     }
 
+    html.no-effects .sts-section {
+      height: auto !important;
+    }
+
+    html.no-effects .sts-sticky {
+      position: relative !important;
+      min-height: auto !important;
+      padding: clamp(3rem, 7vw, 5rem) 0;
+    }
+
+    html.no-effects .sts-glow {
+      display: none !important;
+    }
+
+    html.no-effects .sts-phrase {
+      position: static !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+      max-width: min(980px, 92vw);
+      margin: 0 auto;
+      font-size: clamp(2rem, 6vw, 4.2rem);
+    }
+
+    html.no-effects .sts-phrase + .sts-phrase {
+      margin-top: 1.2rem;
+    }
+
     .solution-title-highlight {
       color: #b7ff62;
       text-shadow:
@@ -566,6 +594,69 @@
     #entregaveis .benefit-image {
       z-index: 2;
       background: #0b2415;
+    }
+
+    html.no-effects *,
+    html.no-effects *::before,
+    html.no-effects *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+
+    html.no-effects [data-anim],
+    html.no-effects [data-anim].kit-visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      filter: none !important;
+    }
+
+    html.no-effects .kit-bokeh-container,
+    html.no-effects .kit-bokeh-particle,
+    html.no-effects .kit-glow-line,
+    html.no-effects #tubesCanvasSection,
+    html.no-effects .purchase-toast {
+      display: none !important;
+    }
+
+    html.no-effects .kit-hover-lift:hover,
+    html.no-effects .objection-card:hover,
+    html.no-effects .faq-final__item:hover,
+    html.no-effects #entregaveis .kit-benefits__card:hover,
+    html.no-effects #entregaveis .kit-benefits__card:hover .kit-benefits__title,
+    html.no-effects #entregaveis .kit-benefits__card:hover .benefit-image-sprite {
+      transform: none !important;
+      filter: none !important;
+    }
+
+    html.no-effects .offer-hourglass__sand-top {
+      animation: sandTop 2.6s linear infinite !important;
+    }
+
+    html.no-effects .offer-hourglass__stream {
+      animation: sandStream 0.7s linear infinite !important;
+    }
+
+    html.no-effects .offer-hourglass__sand-bottom {
+      animation: sandBottom 2.6s linear infinite !important;
+    }
+
+    html.no-effects .offer-activity-card__pulse::before,
+    html.no-effects .offer-activity-card__pulse::after {
+      animation: offer-red-ripple 1.75s ease-out infinite !important;
+    }
+
+    html.no-effects .offer-activity-card__pulse::after {
+      animation-delay: 0.85s !important;
+    }
+
+    html.no-effects .testimonial-print {
+      transition: opacity 0.45s ease, transform 0.45s ease !important;
+    }
+
+    html.no-effects .testimonial-mini {
+      transition: border-color 0.28s ease, transform 0.28s ease, background 0.28s ease, box-shadow 0.28s ease !important;
     }
 
     #entregaveis .benefit-image img {
@@ -2635,13 +2726,13 @@
     <p class="purchase-toast__text" id="purchase-toast-text">Julia acaba de comprar o Receituário Anti-inflamatório</p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.min.js" defer></script>
-  <script src="assets/js/animations.js" defer></script>
-
   <script>
+    document.documentElement.classList.add("no-effects");
+
     window.addEventListener("DOMContentLoaded", () => {
+      const effectsEnabled = false;
+      const offerActivityEnabled = true;
+      const testimonialEffectsEnabled = true;
       const minutesEl = document.getElementById("count-minutes");
       const secondsEl = document.getElementById("count-seconds");
       const countdownEl = document.querySelector(".countdown");
@@ -2671,12 +2762,14 @@
         preload.src = src;
       });
 
-      requestAnimationFrame(() => {
-        if (!deliverables) return;
-        deliverables.style.transform = "translateZ(0)";
-        deliverables.getBoundingClientRect();
-        deliverables.style.transform = "";
-      });
+      if (effectsEnabled) {
+        requestAnimationFrame(() => {
+          if (!deliverables) return;
+          deliverables.style.transform = "translateZ(0)";
+          deliverables.getBoundingClientRect();
+          deliverables.style.transform = "";
+        });
+      }
 
       setInterval(() => {
         remaining = remaining > 0 ? remaining - 1 : 5 * 60;
@@ -2693,7 +2786,7 @@
       const offerBuyerNumbers = ["+26.284", "+26.317", "+26.351", "+26.402", "+26.448"];
       let offerBuyerIndex = 0;
 
-      if (offerBuyersCount) {
+      if (offerActivityEnabled && offerBuyersCount) {
         setInterval(() => {
           offerBuyerIndex = (offerBuyerIndex + 1) % offerBuyerNumbers.length;
           offerBuyersCount.textContent = offerBuyerNumbers[offerBuyerIndex];
@@ -2719,8 +2812,10 @@
         buyerIndex = (buyerIndex + 1) % buyers.length;
       }
 
-      setTimeout(showPurchase, 900);
-      setInterval(showPurchase, 5000);
+      if (effectsEnabled) {
+        setTimeout(showPurchase, 900);
+        setInterval(showPurchase, 5000);
+      }
 
       document.querySelectorAll("[data-testimonial-carousel]").forEach((carousel) => {
         const prints = Array.from(carousel.querySelectorAll("[data-testimonial-print]"));
@@ -2747,6 +2842,7 @@
         }
 
         function startRotation() {
+          if (!testimonialEffectsEnabled) return;
           window.clearInterval(rotationId);
           rotationId = window.setInterval(() => {
             setActive(activeIndex + 1);
@@ -2756,7 +2852,6 @@
         thumbs.forEach((thumb) => {
           thumb.addEventListener("click", () => {
             setActive(Number(thumb.dataset.testimonialThumb || 0));
-            startRotation();
           });
         });
 
@@ -2767,7 +2862,7 @@
       const storySections = Array.from(document.querySelectorAll("[data-sts-section]"));
       const reduceStoryMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      if (storySections.length && !reduceStoryMotion) {
+      if (effectsEnabled && storySections.length && !reduceStoryMotion) {
         let storyTicking = false;
 
         function setStoryState(section, state) {
@@ -2831,7 +2926,7 @@
   <script type="module">
     const section = document.getElementById("tubes-section");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const allowTubes = !prefersReducedMotion;
+    const allowTubes = false && !prefersReducedMotion;
 
     let tubesStarted = false;
 
